@@ -19,9 +19,9 @@ The LDCT and Projection dataset with the chest CT scans is avaiable [here](https
 # Preprocessing
 For the LDCT and Projection dataset you have to first create the images at different doses, and calculate the groundtruth score for each. To perform the preprocessing run: 
 ```
-nohup python3 main.py --task train & 
+nohup python3 main.py --task preprocessing & 
 ```
-The code assumes the chest dataset is located in Datasets/LDCTProjection . If it is in another directory, specify the path using the --dataLDCT argument. In the preprocessing folder you can find the specific images used for training and testing.
+The code assumes the chest dataset is located in Datasets/LDCTProjection . If it is in another directory, specify the path using the --dataLDCT argument. The images at different doses will be saved at that directory. The code outputs json files with the path and ground truth score to each image. In the preprocessing folder you can find the specific images used for training and testing.
 # Training 
 To carry out the training run: 
 ```
