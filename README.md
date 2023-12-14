@@ -4,15 +4,24 @@ No-reference image quality assessment (IQA) is a critical step in medical image 
 ![alt text](https://github.com/mariabaldeon/DistilIQA/blob/main/Images/Framework.jpg)
 
 # Requirements
-* Python 3.7
-* Numpy 1.21.5
-* Keras 2.11.0
-* Tensorflow 2.11.0
-* Simpleitk 2.1.1.2
-* hdf5storage 0.1.18
+* Python 3.10
+* PyTorch 2.0.0 
+* Numpy 1.26.0
+* Simpleitk 2.3.0
+* albumentations 1.3.1
+* einops 0.6.1
+* 
+
 
 # Dataset
 The LDCT and Projection dataset with the chest CT scans is avaiable [here](https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=52758026). The LDCTIQAC2023 dataset with the abdominal CT scans is available [here](https://ldctiqac2023.grand-challenge.org/)
+
+# Preprocessing
+For the LDCT and Projection dataset you have to first create the images at different doses, and calculate the groundtruth score for each. To perform the preprocessing run: 
+```
+nohup python3 main.py --task train & 
+```
+The code assumes the chest dataset is located in Datasets/LDCTProjection . If it is in another directory, specify the path using the --dataLDCT argument. In the preprocessing folder you can find the specific images used for training and testing.
 # Training 
 To carry out the training run: 
 ```
