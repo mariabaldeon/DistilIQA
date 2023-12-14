@@ -11,8 +11,10 @@ No-reference image quality assessment (IQA) is a critical step in medical image 
 * Simpleitk 2.3.0
 * albumentations 1.3.1
 * einops 0.6.1
-* 
-
+* scikit-image 0.21.0
+* scikit-learn 1.3.1
+* torchvision 0.15.2
+* scipy 1.11.2
 
 # Dataset
 The LDCT and Projection dataset with the chest CT scans is avaiable [here](https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=52758026). The LDCTIQAC2023 dataset with the abdominal CT scans is available [here](https://ldctiqac2023.grand-challenge.org/)
@@ -23,12 +25,14 @@ For the LDCT and Projection dataset you have to first create the images at diffe
 nohup python3 main.py --task preprocessing & 
 ```
 The code assumes the chest dataset is located in Datasets/LDCTProjection . If it is in another directory, specify the path using the --dataLDCT argument. The images at different doses will be saved at that directory. The code outputs json files with the path and ground truth score to each image. In the preprocessing folder you can find the specific images used for training and testing.
-# Training 
+# Training the teacher network 
 To carry out the training run: 
 ```
 nohup python3 main.py --task train & 
 ```
 The code assumes the training dataset is located in the directory Datasets/Train. If it is in another directory, specify the path using the --dataTrain argument. The training will be performed in the five folds. For each fold two folders named 2d_training_logs and 3d_training_logs will appear. Inside the folders, the training logs and weights wil be saved for the 2d and 3d CNNs. 
+
+# Training the student network 
 
 # Evaluation
 To carry out the evaluation run: 
