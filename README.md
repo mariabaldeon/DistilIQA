@@ -11,6 +11,8 @@ No-reference image quality assessment (IQA) is a critical step in medical image 
 * Simpleitk 2.1.1.2
 * hdf5storage 0.1.18
 
+# Dataset
+The LDCT and Projection dataset with the chest CT scans is avaiable [here](https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=52758026). The LDCTIQAC2023 dataset with the abdominal CT scans is available [here]([https://promise12.grand-challenge.org/](https://ldctiqac2023.grand-challenge.org/))
 # Training 
 To carry out the training run: 
 ```
