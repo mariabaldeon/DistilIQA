@@ -31,7 +31,7 @@ To carry out the training of the teacher network run:
 ```
 nohup python3 main.py --task train_teacher & 
 ```
-The training will be performed using a five fold schema. For each fold, a folder named snapshots_fold_{fold} and a file named train_info_fold{fold}.csv will appear. Inside the folder, the weights for the teacher ensemble member will be stored. In the file, information about the loss and overall performance metric for the training and validation set are saved. Use the weights with the highest overall performance in the validation set to form the teacher network.   
+The training will be performed using a five fold schema. For each fold, a folder named snapshots_fold_{fold} and a file named train_info_fold_{fold}.csv will appear. Inside the folder, the weights for the teacher ensemble member will be stored. In the file, information about the loss and overall performance metric for the training and validation set are saved. Use the weights with the highest overall performance in the validation set to form the teacher network.   
 
 # Training the student network 
 To carry out the training of the student network run: 
