@@ -24,7 +24,7 @@ For the LDCT and Projection dataset you have to first create the images at diffe
 ```
 nohup python3 main.py --task preprocessing & 
 ```
-The code assumes the chest cases are located in Dataset/LDCT-and-Projection-data. Revise the file Dataset/LDCT-and-Projection-data/dataset_information for details on the cases selected for training and testing. If the cases are in another directory, specify the path using the --data_preprocess_path argument. The images at different doses will be saved at that directory. The code also outputs a json file with the path and ground truth score to each image (dataset.json), json file with the images used for training (train.json), and json file with images used for testing (test.json).
+The code assumes that the chest cases are located in Dataset/LDCT-and-Projection-data. Revise the file Dataset/LDCT-and-Projection-data/dataset_information for details on the cases selected for training and testing. If the cases are in another directory, specify the path using the --data_preprocess_path argument. The images at different doses will be saved at that directory. The code also outputs a json file with the path and ground truth score to each image (dataset.json), json file with the images used for training (train.json), and json file with images used for testing (test.json).
 
 # Training the teacher network 
 To carry out the training of the teacher network run: 
@@ -38,24 +38,14 @@ To carry out the training of the student network run:
 ```
 nohup python3 main.py --task train_student & 
 ```
-For the code to work, you must locate the weights for the teacher network in the following path Train/weights with the name foldX.hd5, where X refers to the best weight obtained in fold X (eg: for fold 1 use the name fold1.hd5)
+For the code to work, you must locate the best weights of the teacher ensemble network in the following path Train/weights with the name fold{fold}.pth for each member (eg: for fold 1 use the name fold1.pth). The code will generate a folder named snapshots_students, and a file named train_info_student.csv. In the snapshots_students folder, the weights obtained from training the student will be stored. In the file, information about the overall performance of the student network, loss, and teacher overall performance are saved. Use the weights with the highest overall performance for evaluation.  
 
 # Evaluation
 To carry out the evaluation run: 
 ```
-nohup python3 main.py --task train_teacher & 
+nohup python3 main.py --task evaluation & 
 ```
-The code assumes the testing dataset is located in the directory Datasets/Test. If it is in another directory, specify the path using the --dataTest argument.The code will evaluate the 2D CNN ensemble, 3D CNN ensemble, and PPZSeg-Net. Evaluation metrics will be saved in a .csv file in a folder named Evaluation_metrics. The evaluation  metrics considered are the Dice similarity coefficient (DS) and Haussdorff distance (HD). These metrices will be calculated for the 2D CNN ensemble, 3D CNN ensemble, and PPZSeg-Net. The segmentation results will be saved in the folders Results_2D.mat, Results_3D.mat, and Results_PPZSegNet.mat for the 2D CNN ensemble, 3D CNN ensemble, and PPZSeg-Net, respectively. The trained weights from this work should be located in the directory Networks/weights (link to weights: [link](https://drive.google.com/drive/folders/1wW_aBqUAe9g6eQCN9de1ILyDLg0dGPb0?usp=share_link) ). These weights will  be used for evaluation. If you wan to use other weights, locate them in this folder with the corresponding name k{fold}_{network}D.hdf5, where fold refers to the fold trained on and network to the type of network 2D or 3D.  
+The code assumes the weights for the student network are located in the directory Evaluation/weights. If it is in another directory, specify the path using the --student_weight_path argument.The evaluation metrics will be saved in the  accumulate_metrics.csv file. Furthermore, the prediction and ground truth score for each image in the testing set are saved in the eval_info.csv file. 
 
 # Citation
 If you use this code in your research, please cite our paper.
-```
-@article{wei2multi,
-  title={A Multi-object Deep Neural Network Architecture to detect Prostate Anatomy in T2-weighted MRI: Performance Evaluation},
-  author={Wei, Zhouping and Baldeon Calisto, Maria and Abudalou, Shatha and Yilmaz, Yasin and Gage, Kenneth and Pow-Sang, Julio M and Balagurunathan, Yoganand},
-  journal={Frontiers in Nuclear Medicine},
-  volume={2},
-  pages={45},
-  publisher={Frontiers}
-}
-```
