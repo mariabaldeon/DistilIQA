@@ -27,18 +27,23 @@ nohup python3 main.py --task preprocessing &
 The code assumes the chest cases are located in Dataset/LDCT-and-Projection-data. Revise the file Dataset/LDCT-and-Projection-data/dataset_information for details on the cases selected for training and testing. If the cases are in another directory, specify the path using the --data_preprocess_path argument. The images at different doses will be saved at that directory. The code also outputs a json file with the path and ground truth score to each image (dataset.json), json file with the images that used for training (train.json), and json file with images used for testing (test.json).
 
 # Training the teacher network 
-To carry out the training run: 
+To carry out the training of the teacher network run: 
 ```
-nohup python3 main.py --task train & 
+nohup python3 main.py --task train_teacher & 
 ```
-The code assumes the training dataset is located in the directory Datasets/Train. If it is in another directory, specify the path using the --dataTrain argument. The training will be performed in the five folds. For each fold two folders named 2d_training_logs and 3d_training_logs will appear. Inside the folders, the training logs and weights wil be saved for the 2d and 3d CNNs. 
+The training will be performed using a five fold schema. For each fold,  two folders named 2d_training_logs and 3d_training_logs will appear. Inside the folders, the training logs and weights wil be saved for the 2d and 3d CNNs. 
 
 # Training the student network 
+To carry out the training of the student network run: 
+```
+nohup python3 main.py --task train_student & 
+```
+For the code to work, you must locate the weights for the teacher network in the following path Train/weights with the name foldX.hd5, where X refers to the best weight obtained in fold X (eg: for fold 1 use the name fold1.hd5)
 
 # Evaluation
 To carry out the evaluation run: 
 ```
-nohup python3 main.py --task evaluate & 
+nohup python3 main.py --task train_teacher & 
 ```
 The code assumes the testing dataset is located in the directory Datasets/Test. If it is in another directory, specify the path using the --dataTest argument.The code will evaluate the 2D CNN ensemble, 3D CNN ensemble, and PPZSeg-Net. Evaluation metrics will be saved in a .csv file in a folder named Evaluation_metrics. The evaluation  metrics considered are the Dice similarity coefficient (DS) and Haussdorff distance (HD). These metrices will be calculated for the 2D CNN ensemble, 3D CNN ensemble, and PPZSeg-Net. The segmentation results will be saved in the folders Results_2D.mat, Results_3D.mat, and Results_PPZSegNet.mat for the 2D CNN ensemble, 3D CNN ensemble, and PPZSeg-Net, respectively. The trained weights from this work should be located in the directory Networks/weights (link to weights: [link](https://drive.google.com/drive/folders/1wW_aBqUAe9g6eQCN9de1ILyDLg0dGPb0?usp=share_link) ). These weights will  be used for evaluation. If you wan to use other weights, locate them in this folder with the corresponding name k{fold}_{network}D.hdf5, where fold refers to the fold trained on and network to the type of network 2D or 3D.  
 
