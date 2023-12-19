@@ -24,7 +24,7 @@ For the LDCT and Projection dataset you have to first create the images at diffe
 ```
 nohup python3 main.py --task preprocessing & 
 ```
-The code assumes the chest cases are located in Dataset/LDCT-and-Projection-data. Revise the file Dataset/LDCT-and-Projection-data/dataset_information for details on the cases selected for training and testing. If the cases are in another directory, specify the path using the --data_preprocess_path argument. The images at different doses will be saved at that directory. The code also outputs a json file with the path and ground truth score to each image (dataset.json), json file with the images that used for training (train.json), and json file with images used for testing (test.json).
+The code assumes the chest cases are located in Dataset/LDCT-and-Projection-data. Revise the file Dataset/LDCT-and-Projection-data/dataset_information for details on the cases selected for training and testing. If the cases are in another directory, specify the path using the --data_preprocess_path argument. The images at different doses will be saved at that directory. The code also outputs a json file with the path and ground truth score to each image (dataset.json), json file with the images used for training (train.json), and json file with images used for testing (test.json).
 
 # Training the teacher network 
 To carry out the training of the teacher network run: 
