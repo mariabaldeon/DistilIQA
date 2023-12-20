@@ -43,7 +43,7 @@ For the code to work, you must locate the best weights of the teacher ensemble n
 # Evaluation
 To carry out the evaluation run: 
 ```
-nohup python3 main.py --task evaluation & 
+nohup python3 main.py --task evaluate & 
 ```
 The code assumes the weights for the student network are located in the directory Evaluation/weights. If it is in another directory, specify the path using the --student_weight_path argument.The evaluation metrics will be saved in the  accumulate_metrics.csv file. Furthermore, the prediction and ground truth score for each image in the testing set are saved in the eval_info.csv file. 
 
