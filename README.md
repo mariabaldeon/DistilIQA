@@ -49,6 +49,7 @@ The code assumes the weights for the student network are located in the director
 
 # Citation
 If you use this code in your research, please cite our paper.
+```
 @article{BALDEONCALISTO2024108670,
 title = {DistilIQA: Distilling vision transformers for no-reference perceptual CT image quality assessment},
 journal = {Computers in Biology and Medicine},
@@ -58,3 +59,4 @@ issn = {0010-4825},
 doi = {https://doi.org/10.1016/j.compbiomed.2024.108670},
 url = {https://www.sciencedirect.com/science/article/pii/S0010482524007558},
 author = {Maria Baldeon-Calisto and Francisco Rivera-Velastegui and Susana K. Lai-Yuen and Daniel Riofrío and Noel Pérez-Pérez and Diego Benítez and Ricardo Flores-Moyano}}
+```
